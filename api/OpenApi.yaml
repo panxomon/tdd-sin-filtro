@@ -1,0 +1,99 @@
+openapi: 3.0.1
+info:
+  description: "Una API para gestionar cervezas, incluyendo creación y consulta de productos."
+  title: Cerveza API  
+  contact:
+    name: Soporte API
+    email: soporte@cervezaapi.com
+servers:
+  - url: https://api.cervezaapi.com/v1
+tags:  # Agrega esta sección para definir los tags globalmente
+  - name: cervezas
+    description: Operaciones relacionadas con cervezas
+paths:
+  /cervezas:
+    post:      
+      summary: "Crear una nueva cerveza"
+      description: "Permite la creación de una nueva cerveza en el sistema, proporcionando todos los detalles necesarios." 
+      operationId: crearCerveza        
+      tags:
+        - cervezas  # Agrega una etiqueta aquí
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                tipo:
+                  type: string
+                alcohol:
+                  type: number
+                descripcion:
+                  type: string
+                origen:
+                  type: string
+                fecha_creacion:
+                  type: string
+                  format: date
+                ingredientes:
+                  type: array
+                  items:
+                    type: string
+                volumen:
+                  type: number
+                unidades_disponibles:
+                  type: integer
+              required:
+                - nombre
+                - tipo
+                - alcohol
+                - descripcion
+                - origen
+                - fecha_creacion
+                - ingredientes
+                - volumen
+                - unidades_disponibles
+      responses:
+        '201':
+          description: Cerveza creada con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      nombre:
+                        type: string
+                      tipo:
+                        type: string
+                      alcohol:
+                        type: number
+                      descripcion:
+                        type: string
+                      origen:
+                        type: string
+                      fecha_creacion:
+                        type: string
+                        format: date
+                      ingredientes:
+                        type: array
+                        items:
+                          type: string
+                      volumen:
+                        type: number
+                      unidades_disponibles:
+                        type: integer
+                  Message:
+                    type: string
+                  Status:
+                    type: integer
+                    example: 201
+        '400':
+          description: Solicitud incorrecta
