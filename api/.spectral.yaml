@@ -1,0 +1,32 @@
+extends: ["spectral:oas"]
+
+rules:
+  info-description:
+    description: "El objeto 'info' debe tener una descripción."
+    given: "$.info.description"
+    then:
+      function: truthy
+
+  info-title:
+    description: "El objeto 'info' debe tener un título."
+    given: "$.info.title"
+    then:
+      function: truthy
+
+  info-version:
+    description: "El objeto 'info' debe tener una versión."
+    given: "$.info.version"
+    then:
+      function: truthy
+
+  info-contact:
+    description: "El objeto 'info' debe tener información de contacto."
+    given: "$.info.contact"
+    then:
+      function: truthy
+
+  servers-defined:
+    description: "Debe haber al menos un servidor definido."
+    given: "$.servers"
+    then:
+      function: truthy
